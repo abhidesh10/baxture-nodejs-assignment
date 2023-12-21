@@ -1,0 +1,32 @@
+{
+  "name": "baxture-nodejs-assignment",
+  "version": "1.0.0",
+  "engines": {
+    "node": "18.x"
+  },
+  "description": "Implement CRUD API using in-memory database",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhidesh10/baxture-nodejs-assignment.git"
+  },
+  "author": "Abhijit Deshmukh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhidesh10/baxture-nodejs-assignment/issues"
+  },
+  "homepage": "https://github.com/abhidesh10/baxture-nodejs-assignment#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
