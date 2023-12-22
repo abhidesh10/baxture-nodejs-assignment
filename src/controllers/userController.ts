@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import { UserService } from "../services/userService";
+import { User } from "../models/user";
 
 export class UserController {
   static getAllUsers(req: Request, res: Response): void {
@@ -24,6 +25,24 @@ export class UserController {
   static async getUserById(req: Request, res: Response): Promise<void> {
     const { userId } = req.params;
     const user = await UserService.getUserById(userId);
+
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  }
+
+  static async updateUser(req: Request, res: Response): Promise<void> {
+    const { userId } = req.params;
+
+    const updatedUser = {
+      username: req.body.username,
+      age: req.body.age,
+      hobbies: req.body.hobbies,
+    } as User;
+
+    const user = await UserService.updateUser(userId, updatedUser);
 
     if (user) {
       res.status(200).json(user);

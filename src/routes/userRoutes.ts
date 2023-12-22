@@ -11,5 +11,11 @@ const router = express.Router();
 router.get("/", UserController.getAllUsers);
 router.post("/", validateRequestBody, UserController.createUser);
 router.get("/:userId", validateUserRequest, UserController.getUserById);
+router.put(
+  "/:userId",
+  validateUserRequest,
+  validateRequestBody,
+  UserController.updateUser
+);
 
 export default router;

@@ -31,4 +31,20 @@ export class UserService {
       throw new Error("Failed to fetch user by ID.");
     }
   }
+
+  static async updateUser(
+    userId: string,
+    updatedUser: User
+  ): Promise<User | null> {
+    const index = await users.findIndex((user) => user.id === userId);
+
+    let userData: User | null = null;
+
+    if (index !== -1) {
+      users[index] = { ...users[index], ...updatedUser };
+      userData = users[index];
+    }
+
+    return userData;
+  }
 }
