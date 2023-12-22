@@ -36,15 +36,38 @@ export class UserService {
     userId: string,
     updatedUser: User
   ): Promise<User | null> {
-    const index = await users.findIndex((user) => user.id === userId);
+    try {
+      const index = await users.findIndex((user) => user.id === userId);
 
-    let userData: User | null = null;
+      let userData: User | null = null;
 
-    if (index !== -1) {
-      users[index] = { ...users[index], ...updatedUser };
-      userData = users[index];
+      if (index !== -1) {
+        users[index] = { ...users[index], ...updatedUser };
+        userData = users[index];
+      }
+
+      return userData;
+    } catch (error) {
+      console.error(`Error updating user by ID: ${userId}`, error);
+      throw new Error("Failed to update user by ID.");
     }
+  }
 
-    return userData;
+  static deleteUser(userId: string): boolean {
+    try {
+      const index = users.findIndex((user) => user.id === userId);
+
+      let result: boolean = false;
+
+      if (index !== -1) {
+        users.splice(index, 1);
+        result = true;
+      }
+
+      return result;
+    } catch (error) {
+      console.error(`Error while deleting user ID: ${userId}`, error);
+      throw new Error("Failed to delete user by ID.");
+    }
   }
 }

@@ -5,8 +5,6 @@ import { User } from "../models/user";
 
 export class UserController {
   static getAllUsers(req: Request, res: Response): void {
-    console.log("inside getAll");
-
     res.status(200).json(UserService.getAllUsers());
   }
 
@@ -46,6 +44,17 @@ export class UserController {
 
     if (user) {
       res.status(200).json(user);
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  }
+
+  static deleteUser(req: Request, res: Response): void {
+    const { userId } = req.params;
+    const success = UserService.deleteUser(userId);
+
+    if (success) {
+      res.status(204).send();
     } else {
       res.status(404).json({ error: "User not found" });
     }
