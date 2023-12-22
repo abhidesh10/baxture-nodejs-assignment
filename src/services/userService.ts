@@ -20,4 +20,15 @@ export class UserService {
       throw new Error("Failed to create user.");
     }
   }
+
+  static async getUserById(userId: string): Promise<User | undefined> {
+    try {
+      const user = await users.find((user) => user.id === userId);
+
+      return user;
+    } catch (error) {
+      console.error(`Error fetching user by ID: ${userId}`, error);
+      throw new Error("Failed to fetch user by ID.");
+    }
+  }
 }
