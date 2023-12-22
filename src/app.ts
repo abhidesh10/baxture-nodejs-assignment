@@ -1,12 +1,15 @@
 import express, { Request, Response, NextFunction } from "express";
-import userRoutes from "./routes/userRoutes";
+import bodyParser from "body-parser";
 import dotenv from "dotenv";
+
+import userRoutes from "./routes/userRoutes";
 
 dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(bodyParser.json());
 app.use("/api/users", userRoutes);
 
 // Handle 404 errors
