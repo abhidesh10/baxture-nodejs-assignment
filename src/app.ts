@@ -8,7 +8,7 @@ import userRoutes from "./routes/userRoutes";
 dotenv.config({ path: `.env.${process.env.NODE_ENV || "example"}` });
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use("/api/users", userRoutes);
@@ -28,8 +28,11 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-app.listen(PORT, () => {
+// Start the server
+const server = app.listen(PORT, () => {
   console.log(
     `Server is running on ${process.env.NODE_ENV} environment with port : ${PORT}`
   );
 });
+
+export default { app, server };
