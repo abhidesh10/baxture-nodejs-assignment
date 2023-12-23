@@ -7,8 +7,9 @@
   "description": "Implement CRUD API using in-memory database",
   "main": "app.js",
   "scripts": {
-    "start:dev": "NODE_ENV=development nodemon src/app.ts",
-    "start:prod": "NODE_ENV=production npm run build && NODE_ENV=production node dist/app.js",
+    "start:dev": "NODE_ENV=development nodemon src/server.ts",
+    "start:prod": "NODE_ENV=production npm run build && NODE_ENV=production node dist/server.js",
+    "start:multi": "NODE_ENV=production npm run build && NODE_ENV=production node dist/cluster.js",
     "build": "tsc",
     "test": "jest --detectOpenHandles"
   },
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/abhidesh10/baxture-nodejs-assignment#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "cluster": "^0.7.7",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "uuid": "^9.0.1"

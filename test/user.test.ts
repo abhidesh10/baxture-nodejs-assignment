@@ -1,9 +1,7 @@
 // test/user.test.ts
 import request from "supertest";
-import appModule from "../src/app";
-
-const app = appModule.app;
-const server = appModule.server;
+import app from "../src/app";
+import server from "../src/server";
 
 beforeAll(async () => {
   // Wait for the server to start before running tests
