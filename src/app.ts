@@ -4,10 +4,11 @@ import dotenv from "dotenv";
 
 import userRoutes from "./routes/userRoutes";
 
-dotenv.config(); // Load environment variables from .env file
+// Load environment variables from .env file
+dotenv.config({ path: `.env.${process.env.NODE_ENV || "example"}` });
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
 app.use("/api/users", userRoutes);
@@ -28,5 +29,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port : ${PORT}`);
+  console.log(
+    `Server is running on ${process.env.NODE_ENV} environment with port : ${PORT}`
+  );
 });

@@ -7,7 +7,8 @@
   "description": "Implement CRUD API using in-memory database",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon src/App.ts",
+    "start:dev": "NODE_ENV=development nodemon src/app.ts",
+    "start:prod": "NODE_ENV=production npm run build && NODE_ENV=production node dist/app.js",
     "build": "tsc"
   },
   "repository": {
