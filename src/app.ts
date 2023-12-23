@@ -8,8 +8,14 @@ import userRoutes from "./routes/userRoutes";
 dotenv.config({ path: `.env.${process.env.NODE_ENV || "example"}` });
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
+// Log worker ID and requested URL for each incoming request
+app.use((req, res, next) => {
+  console.log(
+    `Worker ${process.pid} handling request for ${req.method} ${req.url}`
+  );
+  next();
+});
 app.use(bodyParser.json());
 app.use("/api/users", userRoutes);
 
@@ -28,11 +34,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-// Start the server
-const server = app.listen(PORT, () => {
-  console.log(
-    `Server is running on ${process.env.NODE_ENV} environment with port : ${PORT}`
-  );
-});
-
-export default { app, server };
+export default app;
