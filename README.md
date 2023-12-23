@@ -16,3 +16,6 @@ npm run start:dev
 
 Build for Production
 npm run start:prod
+
+Start Test
+npm run test
